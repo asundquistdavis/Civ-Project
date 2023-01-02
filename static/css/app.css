@@ -5,3 +5,7 @@ div.card {padding: 1%; border-radius: 10px; border: 1px solid;}
 #boarCard {height: 500px;}
 
 div.map {height: 500px; width: 100%;}
+
+div#territoryInfo {height: 200 px; position: relative;}
+
+div.sprite {height: 20px; width: 20px; background-color: red;}
