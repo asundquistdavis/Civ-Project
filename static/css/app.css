@@ -1,0 +1,7 @@
+body, html {height: 100%;}
+
+div.card {padding: 1%; border-radius: 10px; border: 1px solid;}
+
+#boarCard {height: 500px;}
+
+div.map {height: 500px; width: 100%;}
