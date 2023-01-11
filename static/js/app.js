@@ -191,3 +191,8 @@ function map(territories, boardCoords) {
     territoriesLayer = L.geoJson(territories, {style: style, onEachFeature: onEachFeature}).addTo(board);
 
 };
+
+var socket = io();
+socket.on('connect', function() {
+    socket.emit('my event', {data: 'I\'m connected!'});
+});
