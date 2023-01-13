@@ -115,7 +115,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 if 'DYNO' in os.environ:
-    AllOWED_HOSTS = ['*']
+    AllOWED_HOSTS = ['civilization.herokuapp.com']
     CSRF_COOKIE_SECURE = True
     DEBUG = True
     SECRET_KEY = os.environ['SECRET_KEY']
