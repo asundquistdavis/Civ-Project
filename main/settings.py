@@ -42,6 +42,21 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+IS_HEROKU = 'DYNO' in os.environ
+
+if IS_HEROKU:
+    AllOWED_HOSTS = ["*"]
+    DEBUG = True
+    SECRET_KEY = os.environ['SECRET_KEY']
+else:
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = "django-insecure--)cod!c@n!j5@$tf=c0#iok+jo6c4p8y5+^8v9k+)7hlgxv3sz"
+
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+
+    ALLOWED_HOSTS = ['civilization.herokuapp.com']
+
 ROOT_URLCONF = "main.urls"
 
 TEMPLATES = [
@@ -114,16 +129,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # crispy forms template
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-if 'DYNO' in os.environ:
-    AllOWED_HOSTS = ["*"]
-    CSRF_COOKIE_SECURE = True
-    DEBUG = True
-    SECRET_KEY = os.environ['SECRET_KEY']
-else:
-    # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = "django-insecure--)cod!c@n!j5@$tf=c0#iok+jo6c4p8y5+^8v9k+)7hlgxv3sz"
-
-    # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = True
-
-    ALLOWED_HOSTS = ['civilization.herokuapp.com']
