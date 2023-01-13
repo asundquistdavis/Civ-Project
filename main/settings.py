@@ -127,6 +127,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # crispy forms template
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+def set_heroku_settings():
+    AllOWED_HOSTS = ['*']
+    CSRF_COOKIE_SECURE = True
+    DEBUG = False
+    SECRET_KEY = os.environ['SECRET_KEY']
+
 if 'DYNO' in os.environ:
-    from heroku import *
     set_heroku_settings()
