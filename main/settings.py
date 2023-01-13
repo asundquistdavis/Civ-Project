@@ -117,7 +117,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 if 'DYNO' in os.environ:
     AllOWED_HOSTS = ['*']
     CSRF_COOKIE_SECURE = True
-    DEBUG = False
+    DEBUG = True
     SECRET_KEY = os.environ['SECRET_KEY']
 else:
     # SECURITY WARNING: keep the secret key used in production secret!
