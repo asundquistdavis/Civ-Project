@@ -8,9 +8,10 @@
     <p>DB</p>
     <p>Hello {{user}}</p>
     <p>{% if flag == 'gameinprogress' %}Game already in progress{% else %}{{user.player.game}}{% endif %}</p>
+    <p>{{user.player.game.phase}}</p>
     <hr/>
     <p>TK</p>
     <p>Add more players</p>
     <hr/>
-    <p class="text-center">Click <a href="">here</a> to start a new game.</p>
+    <button onclick="window.location.href='/newgame/next/'">Start Game</button>
 {% endblock %}

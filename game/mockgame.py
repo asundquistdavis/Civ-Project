@@ -1,7 +1,7 @@
 """
 game
     turn 0
-        start_game
+        new_game
     turn i: while player.ast_position < max_ast_position, for all players
         census:
             tax_collection
