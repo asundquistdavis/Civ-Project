@@ -50,7 +50,7 @@ if IS_HEROKU:
     AllOWED_HOSTS = ["*"]
     DEBUG = True
     SECRET_KEY = os.environ['SECRET_KEY']
-    db_from_env = dj_database_url.config(conn_max_age=500)
+    db_from_env = dj_database_url.parse(conn_max_age=500)
     DATABASES = {'default': db_from_env}
 else:
     ALLOWED_HOSTS = []
