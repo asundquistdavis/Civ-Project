@@ -50,14 +50,14 @@ if IS_HEROKU:
     AllOWED_HOSTS = ["*"]
     DEBUG = True
     SECRET_KEY = os.environ['SECRET_KEY']
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES = {'default': db_from_env}
 else:
-    # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = "django-insecure--)cod!c@n!j5@$tf=c0#iok+jo6c4p8y5+^8v9k+)7hlgxv3sz"
-
-    # SECURITY WARNING: don't run with debug turned on in production!
+    ALLOWED_HOSTS = []
     DEBUG = True
-
-    ALLOWED_HOSTS = ['*']
+    SECRET_KEY = "django-insecure--)cod!c@n!j5@$tf=c0#iok+jo6c4p8y5+^8v9k+)7hlgxv3sz"
+    DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR / "db.sqlite3",}
+}
 
 ROOT_URLCONF = "main.urls"
 
@@ -78,20 +78,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "main.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
