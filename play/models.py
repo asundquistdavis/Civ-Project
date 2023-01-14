@@ -28,7 +28,7 @@ class Player(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f'{self.user}, {self.game}'
+        return f'{self.user}'
 
     def getoradd_pre_game(self):
         if not self.game:
