@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 bg-light rounded p-2">
+            {% block start %}{% start %}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+{% endblock%}
