@@ -1,0 +1,16 @@
+{% extends 'start/base.html' %}
+
+{% block title %}Start a New Game{% endblock %}
+
+{% block start %}
+    <h3 class="text-center">Play Civilization Online</h3>
+    <hr/>
+    <p>DB</p>
+    <p>Hello {{user}}</p>
+    <p>{% if flag == 'gameinprogress' %}Game already in progress{% else %}{{user.player.game}}{% endif %}</p>
+    <hr/>
+    <p>TK</p>
+    <p>Add more players</p>
+    <hr/>
+    <p class="text-center">Click <a href="">here</a> to start a new game.</p>
+{% endblock %}
