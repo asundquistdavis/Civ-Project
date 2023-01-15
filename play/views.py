@@ -3,13 +3,13 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from pathlib import Path
 import os
-from json import dump, dumps, load, loads
+from json import load
 
-login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def playgame(request):
     return render(request, 'play/game.html')
 
-login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def endgame(request):
     request.user.player.current_game.delete()
     return redirect('/newgame/')
