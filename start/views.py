@@ -17,7 +17,8 @@ def newgame(request):
 
 @login_required(login_url='/login/')
 def newgamebyid(request, gameid=0):
-    if request.user.player.current_game.id == gameid:
+    user = request.user
+    if user.player.getoradd_game().id == gameid:
         return render(request, 'start/newgame.html', {'gameid':gameid})
     else:
         return redirect(f'/newgame/{gameid}/overwrite/')
