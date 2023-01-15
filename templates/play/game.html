@@ -1,12 +1,45 @@
 {% extends 'play/base.html' %}
-
-{% block title%}Civilization - {{user.player.game.phase}}{% endblock %}
-
-{% block play %}
-<h3>Civilization Game</h3>
-<p>TK</p>
-<p>This is the gameboard</p>
-<hr/>
-<p>DB</p>
-<p>{{user.player.game.phase}}</p>
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+<link rel="stylesheet" href="{%static '/css/app.css'%}"/>
 {% endblock %}
+{% block title%}Civilization - {{user.player.current_game.phase|title}}{% endblock %}
+
+<!-- top -->
+{% block top %}
+<h3>{{user.player.current_game.phase|title}}</h3>
+{% endblock %}
+
+<!-- left -->
+{% block left %}
+<h3>Players</h3>
+<hr/>
+<ul>
+{% for player in user.player.current_game.player_set.all %}
+    <li>{{ player }}</li>
+{% endfor %}
+</ul>
+{%endblock%}
+
+<!-- middle -->
+{% block middle %}
+<div class="board"></div>
+{% endblock %}
+
+<!-- right -->
+{% block right %}
+<p>@Debug</p>
+<p>{{user.player.current_game.id}}</p>
+{%endblock%}
+
+<!-- bottom -->
+{% block bottom %}
+<button onclick="window.location.href='/play/endgame/'">End Game</button>
+{%endblock%}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.1/d3.min.js" integrity="sha512-EJphfO0pq9xyT3qaHte1zam2S9a1PZ76oHBjayziMT+2lw/Y0NhkSVHS2rfl3t4UX/eyq/D6f9d2sjA6K9t/Kg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+<script src="{% static '/js/app.js' %}"></script>
+{%endblock%}

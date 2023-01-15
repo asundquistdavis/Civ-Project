@@ -1,17 +1,35 @@
 {% extends 'start/base.html' %}
 
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static '/css/start.css' %}"/>
+{% endblock %}
+
 {% block title %}Start a New Game{% endblock %}
 
 {% block start %}
+{% if not overwrite %}
     <h3 class="text-center">Play Civilization Online</h3>
     <hr/>
-    <p>DB</p>
-    <p>Hello {{user}}</p>
-    <p>{% if flag == 'gameinprogress' %}Game already in progress{% else %}{{user.player.game}}{% endif %}</p>
-    <p>{{user.player.game.phase}}</p>
+    <p>Players</p>
     <hr/>
-    <p>TK</p>
-    <p>Add more players</p>
+    <ul>
+    {% for player in user.player.current_game.player_set.all %}
+        <li>{{ player }}</li>
+    {% endfor %}
+    </ul>
     <hr/>
-    <button onclick="window.location.href='/newgame/next/'">Start Game</button>
+    <button onclick="window.location.href='/newgame/{{gameid}}/next/'">Start Game</button>
+    <hr/>
+    <p>Debug</p>
+    <p>{{gameid}}</p>
+{% else %}
+    <h3 class="text-center">Play Civilization Online</h3>
+    <p>Starting new game will overwrite your current game. Do you wish to continue?</p>
+    <button onclick="window.location.href='/newgame/{{gameid}}/overwrite/next'">Continue</button>
+    <hr/>
+    <p>Debug</p>
+    <p>{{gameid}}</p>
+{% endif %}
 {% endblock %}

@@ -1,0 +1,10 @@
+{"players":[
+    {
+    "name": "Andrew", 
+    "territories": [{"name": "Syracuse", "units": 0, "city": 1}, {"name": "Upper Sicily", "units": 2}, {"name": "Valentia", "units": 5}]
+    },
+    {
+    "name": "Tom", 
+    "territories": [{"name": "Malta", "units": 0, "city": 1}, {"name": "Western Sicily", "units": 2}, {"name": "Valentia", "units": 3}, {"name": "Palermo", "city": 1}]
+    }
+]}

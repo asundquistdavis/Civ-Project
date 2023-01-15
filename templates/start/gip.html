@@ -1,0 +1,10 @@
+{% extends 'start/base.html' %}
+
+{% block title %}Start a New Game{% endblock %}
+
+{% block start %}
+    <h3>Game Already In Progress!</h3>
+    <hr/>
+    <p>Warning - starting new a new game will delete your current session.</p>
+    <button onclick="window.location.href='/newgame/gip/next/'">Start Game</button>
+{% endblock %}

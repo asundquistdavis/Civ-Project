@@ -20,7 +20,7 @@ from registration import views as registrationviews
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('newuser', registrationviews.newuser, name='new user'),
-    path('logout/next', registrationviews.logoutnext, name='lgout redirect'),
+    path('logout/next/', registrationviews.logoutnext, name='lgout redirect'),
     path('', include('start.urls')),
     path('play/', include('play.urls')),
     path('', include('django.contrib.auth.urls')),

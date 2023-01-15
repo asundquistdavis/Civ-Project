@@ -4,11 +4,26 @@
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10 bg-light rounded text-center">
-            {% block play %}{% endblock %}
+        <div class="col-md-12 bg-light rounded text-center g-2 border">
+            {% block top %}{% endblock %}
         </div>
-        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <!-- <div class="col-md-1"></div> -->
+        <div class="col-md-2 bg-light rounded text-center g-2 border">
+            {% block left %}{%endblock%}
+        </div>
+        <div class="col-md-8 bg-light rounded text-center g-2 border">
+            {% block middle %}{%endblock%}
+        </div>
+        <div class="col-md-2 bg-light rounded text-center g-2 border">
+            {% block right %}{%endblock%}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 bg-light rounded text-center g-2 p-1 border">
+            {% block bottom %}{%endblock%}
+        </div>
     </div>
 </div>
 
