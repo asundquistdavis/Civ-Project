@@ -2,9 +2,9 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
-<link rel="stylesheet" href="{%static '/css/app.css'%}"/>
+<link rel="stylesheet" href="{%static 'play/css/app.css'%}"/>
 {% endblock %}
-{% block title%}Civilization - {{user.player.current_game.phase|title}}{% endblock %}
+<!-- {% block title%}Civilization - {{user.player.current_game.phase|title}}{% endblock %} -->
 
 <!-- top -->
 {% block top %}
@@ -24,7 +24,7 @@
 
 <!-- middle -->
 {% block middle %}
-<div class="board"></div>
+<div id="board" class="map"></div>
 {% endblock %}
 
 <!-- right -->
@@ -41,5 +41,5 @@
 {% block scripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.1/d3.min.js" integrity="sha512-EJphfO0pq9xyT3qaHte1zam2S9a1PZ76oHBjayziMT+2lw/Y0NhkSVHS2rfl3t4UX/eyq/D6f9d2sjA6K9t/Kg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-<script src="{% static '/js/app.js' %}"></script>
+<script src="{% static 'play/js/app.js' %}"></script>
 {%endblock%}

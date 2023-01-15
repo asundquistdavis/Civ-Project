@@ -13,12 +13,12 @@ def newgame(request):
         return redirect(f'/newgame/{game.id}')
     else:
         gameid = 0
-        return redirect(f'/newgame/{gameid}overwrite/')
+        return redirect(f'/newgame/{gameid}/overwrite/')
 
 @login_required(login_url='/login/')
 def newgamebyid(request, gameid=0):
     user = request.user
-    if user.player.getoradd_game().id == gameid:
+    if user.player.getoradd_game() and user.player.getoradd_game().id==gameid:
         return render(request, 'start/newgame.html', {'gameid':gameid})
     else:
         return redirect(f'/newgame/{gameid}/overwrite/')
@@ -36,5 +36,7 @@ def newgameoverwrite(request, gameid=0):
 @login_required(login_url='/login/')
 def newgameoverwritenext(request, gameid=0):
     user = request.user
+    print('original id:', user.player.current_game.id)
     game = user.player.overwrite_game(gameid=gameid)
+    print('new id:', game.id)
     return redirect(f'/newgame/{game.id}/')

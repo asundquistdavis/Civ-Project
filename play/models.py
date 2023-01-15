@@ -20,40 +20,44 @@ class Player(models.Model):
             game.player_set.add(self)
             self.user.save()
             return self.current_game
-        elif self.current_game.phase == Game.Phases.pregame:
+        elif self.current_game.phase == 'pre game':
             return self.current_game
         else:
             return None
 
     def overwrite_game(self, gameid=None):
-        if Game.objects.filter(id=gameid):
-            game = Game.objects.get(id=gameid)
-        else:
-            game = Game()
-            game.save()
+        print('query:', self.current_game.id == gameid)
+        game = Game() if not (Game.objects.filter(id=gameid) and self.current_game.id != gameid) else Game.objects.get(id=gameid)
+        game.save()
         self.current_game = game
-        self.save()
+        self.user.save()
         return self.current_game
 
-        
+    def send_data(self):
+        return {
+            'id': self.user.id,
+            'username': self.user.username,
+        }
+
 class Game(models.Model):
     start_time = models.DateTimeField(default=timezone.localtime(timezone.now()).strftime('%Y-%m-%dT%H:%M:%S'))
     turn = models.ForeignKey(Player, on_delete=models.CASCADE, related_name='current_turn', default=None, null=True)
-
-    class Phases(models.TextChoices):
-        pregame = 'PG', gtl('pre game')
-        newgame = 'NG', gtl('start of game')
-        census = 'CE', gtl('census')
-        movement = 'MO', gtl('movement')
-
-    phase = models.CharField(max_length=2, choices=Phases.choices, default=Phases.pregame)
+    PHASES = [
+        'pre game',
+        'new game',
+        'census',
+        'movement',
+        'trade',
+        'purchases',
+    ]
+    phase = models.CharField(max_length=15, default='pre game')
 
     def __str__(self) -> str:
         return f'Game number {self.id} started on {self.start_time}'
 
     def start(self):
         print(f'starting game: {self}')
-        self.phase = 'new_game'
+        self.phase = 'new game'
         self.save()
         print(f'starting new phase: {self.phase}')
         sleep(20)
@@ -61,9 +65,28 @@ class Game(models.Model):
         self.save()
         print(f'starting new phase: {self.phase}')
         return self
-    
+
     def get_phase(self):
-        return Game.Phases[self.phase]
+        return self.phase
+
+    def next_phase(self):
+        phase = self.PHASES.index(self.phase)
+        self.phase = self.PHASES[phase+1]
+        return self.phase
+
+    def send_data(self):
+        return {
+            'palyers': [dict(player) for player in self.player_set_all()],
+            'turn': self.turn.user.username,
+            'phase': self.phase
+        }
+
+class Territory(models.Model):
+    name = models.CharField(max_length=30)
+
+
+class TerritoryOccupation(models.Model):
+    pass
 
 @receiver(post_save, sender=User)
 def create_user_player(sender, instance, created, **kwargs):

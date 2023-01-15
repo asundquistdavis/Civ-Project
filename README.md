@@ -1,12 +1,10 @@
-# Civ Prodject
-
-## Overview
-This repo creates a interactive web app to play an online version of the Civilization Board game. 
-
-The app is hosted through [Heroku](https://www.heroku.com) using a [flask](https://www.fullstackpython.com/flask.html) framework.
-
-The game logic is written in Python and states are stored in an SQL server hosted through Heroku.
-
-The game board/map is drawn using [Leaflet](https://leafletjs.com/), open source mapping library for javascript.
-
-The territories' styling layers are drawn by hand and converted to geojson using [geojson.io](https://geojson.io/#map=2/0/20).
+# Civ Project
+ 
+## Methodology
+This project is a fully deployed web app. The backend and game logic is written in Python's [Django](https://www.djangoproject.com/) framework. The app is hosted through [Heroku](https://www.heroku.com) and the Postgres database is hosted through [AWS](https://aws.amazon.com/). Static files are currently served by the Heroku. The frontend utilizes Django's render templates functionality and features [Leaflet](https://leafletjs.com/), open source mapping library for javascript, to draw the game board. The territories' styling layers are drawn by hand and converted to geojson using [geojson.io](https://geojson.io/#map=2/0/20).
+ 
+## Gameplay
+Civilization is a round based strategy game where each player develops a civilization through a combination constructing cities, acquiring advancement cards and advancing on the AST (Archeological Succession Table). Each round is broken up into several phases, such as census, movement and trade. Within each phase, players take turns performing key actions for that phase. Movement is a key phase that allows players to construct new cities, grow their population, and attack nearby players. While conquest *can* contribute to a player's victory, the game balances several components, meaning trade and diplomacy are just as important, if not more. In addition to movement, trade allows players to exchange commodities to build sets of commodities. Sets are used to purchase advancement cards, with larger sets worth exponentially more. Trade also comes at the risk of acquiring calamities. At the end of each round players must meet 'era' requirements, such as number of cities or advancement cards, to move forward on the AST. Falling behind on AST does not guarantee losing, however it plays a role in the final score. The game ends when at least one player reaches the end of the AST (end of bronze age). More about the rules to Mega Civilization can be found [here](https://prezi.com/p/hew0mh5zdu14/mega-civilization-game-play-and-rules/).
+ 
+## Inspiration
+This game is modeled after the 1980 Avalon Hill board game, [Civlilization](https://en.wikipedia.org/wiki/Civilization_(1980_board_game)), and the [Mega Civilization](https://boardgamegeek.com/boardgame/184424/mega-civilization) board game, a remastered and expanded version of the original. The game is not to be confused with Cid Meier's computer game series, developed by activision, which also draws inspiration from the original Avalon Hill game.

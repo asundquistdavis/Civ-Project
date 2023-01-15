@@ -16,7 +16,9 @@ let moveTerritoriesLayer;
 
 let moves = [];
 
-d3.json('/static/assets/territories.geojson').then(territories => d3.json('/static/assets/board.geojson').then(boardCoords => map(territories, boardCoords)));
+d3.json('/play/territories').then(territories => d3.json('/play/board').then(boardCoords => {
+    map(territories, boardCoords)
+}));
 
 // run at start
 // populates html for all cards
